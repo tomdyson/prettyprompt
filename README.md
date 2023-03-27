@@ -2,6 +2,10 @@
 
 Simple tools for better prompts.
 
+## Installation
+
+`pip install prettyprompt`
+
 ## Usage
 
 ### Sniffing bad intentions
