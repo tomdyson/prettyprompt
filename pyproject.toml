@@ -12,6 +12,7 @@ dynamic = ["version", "description"]
 dependencies = [
     "beautifulsoup4",
     "sqlparse",
+    "openai",
 ]
 
 [project.urls]

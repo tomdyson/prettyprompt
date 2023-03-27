@@ -1,4 +1,4 @@
-from prettyprompt.sniffers import is_sql_write_statement
+from prettyprompt.sniffers import is_prompt_injection_LLM, is_sql_write_statement
 
 
 class TestSQLWriteSniffer:
@@ -30,3 +30,16 @@ class TestSQLWriteSniffer:
             )
             is True
         )
+
+
+class TestPromptInjectionSniffer:
+    # Tests that the function correctly identifies a prompt injection when provided
+    # with a prompt that is an example of prompt injection. tags: [happy path]
+    def test_happy_path(self, mocker):
+        # Mock ChatCompletion API response
+        mocker.patch(
+            "openai.ChatCompletion.create",
+            return_value={"choices": [{"message": {"content": "yes"}}]},
+        )
+        prompt = "This is a prompt injection example: {{malicious_code}}"
+        assert is_prompt_injection_LLM(prompt) is True

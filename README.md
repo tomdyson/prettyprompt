@@ -43,7 +43,7 @@ cleaners.simplify_text(text)
 
 ## Tests
 
-- `pip install pytest`
+- `pip install pytest pytest-mock`
 - `pytest`
 
 ## TODO
