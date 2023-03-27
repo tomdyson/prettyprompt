@@ -15,6 +15,9 @@ from prettyprompt import sniffers
 
 # will this SQL statement write to my database?
 sniffers.is_sql_write_statement(user_supplied_sql)
+
+# is this a prompt injection attempt? ask ChatGPT
+sniffers.is_prompt_injection(prompt, strategy="LLM")
 ```
 
 ### Converting input
