@@ -30,7 +30,7 @@ class TestSQLWriteSniffer:
     def test_multiple_sql_statements(self):
         assert (
             is_sql_write_statement(
-                "SELECT * FROM users; INSERT INTO users (name, age) VALUES ('John', 25);"
+                "SELECT * FROM users; INSERT INTO users (name, age) VALUES ('Sof', 25);"
             )
             is True
         )
