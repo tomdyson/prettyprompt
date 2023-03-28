@@ -52,4 +52,4 @@ cleaners.simplify_text(text)
 
 ## TODO
 
-- [Prompt Injection](#1)
+- [Prompt Injection](https://github.com/tomdyson/prettyprompt/issues/1)
