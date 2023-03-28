@@ -17,6 +17,7 @@ from prettyprompt import sniffers
 sniffers.is_sql_write_statement(user_supplied_sql)
 
 # is this a prompt injection attempt? ask ChatGPT
+# (needs an OpenAI API key)
 sniffers.is_prompt_injection(prompt, strategy="LLM")
 ```
 
@@ -51,4 +52,4 @@ cleaners.simplify_text(text)
 
 ## TODO
 
-- [ ] Prompt Injection
+- [Prompt Injection](#1)
