@@ -13,6 +13,7 @@ dependencies = [
     "beautifulsoup4",
     "sqlparse",
     "openai",
+    "spacy",
 ]
 
 [project.urls]

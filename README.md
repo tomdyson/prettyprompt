@@ -19,6 +19,10 @@ sniffers.is_sql_write_statement(user_supplied_sql)
 # is this a prompt injection attempt? ask ChatGPT
 # (needs an OpenAI API key)
 sniffers.is_prompt_injection(prompt, strategy="LLM")
+
+# uses spaCy to indicate the imperative-ness of a string
+# needs a trained pipeline e.g. `python -m spacy download en_core_web_sm`
+sniffers.is_imperative(prompt)
 ```
 
 ### Converting input

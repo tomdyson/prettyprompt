@@ -2,6 +2,7 @@
 
 from sqlparse import parse, tokens
 from openai import ChatCompletion
+import spacy
 
 
 def is_sql_write_statement(sql_statement: str) -> bool:
@@ -50,3 +51,19 @@ def is_prompt_injection(prompt: str, strategy: str = "LLM") -> bool:
     """
     if strategy == "LLM":
         return is_prompt_injection_LLM(prompt)
+
+
+def is_imperative(prompt: str) -> bool:
+    """
+    Uses spaCy token parsing to indicate the imperativeness of a prompt.
+    """
+    nlp = spacy.load("en_core_web_sm")
+    doc = nlp(prompt)
+
+    # Check if the first token is a verb in its base form
+    if doc[0].pos_ == "VERB" and doc[0].tag_ == "VB":
+        return True
+
+    # Check for imperatives using dependency parsing
+    # Note: This approach might have false positives and negatives
+    return any(token.dep_ == "ROOT" and token.tag_ == "VB" for token in doc)
