@@ -32,6 +32,9 @@ from prettyprompt import converters
 
 # convert scraped HTML into plain text, maintaining some structure
 converters.html_to_text(scraped_html)
+
+# splits text into meaningful chunks, using GPT-3.5
+converters.chunker(long_text, max_words_per_chunk, min_words_per_chunk)
 ```
 
 ### Cleaning input

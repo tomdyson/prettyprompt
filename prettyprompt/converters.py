@@ -1,4 +1,6 @@
+from typing import List
 from bs4 import BeautifulSoup
+from openai import ChatCompletion
 
 
 def find_innermost_tag(soup, tag_list):
@@ -33,3 +35,31 @@ def html_to_text(html):
         )
     )
     return formatted_text.strip()
+
+
+def chunker(text: str, max_words_per_chunk: int, min_words_per_chunk: int) -> List[str]:
+    """Splits a string into chunks of a maximum size, using GPT"""
+
+    prompt = f"""Please split the following text into chunks of no 
+more than {max_words_per_chunk} words. Start each chunk with '[[chunk]]'. 
+Split the text into meaningful sections that make sense on their own. 
+You can go as small as {min_words_per_chunk} words if necessary."""
+    prompt_messages = [
+        {
+            "role": "system",
+            "content": "You are a helpful assistant.",
+        },
+        {
+            "role": "system",
+            "content": prompt,
+        },
+        {
+            "role": "user",
+            "content": text,
+        },
+    ]
+    resp = ChatCompletion.create(
+        model="gpt-3.5-turbo", messages=prompt_messages, temperature=0
+    )
+    answer = resp["choices"][0]["message"]["content"]
+    return [chunk.strip() for chunk in answer.split("[[chunk]]") if chunk.strip()]
